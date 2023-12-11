@@ -1,6 +1,7 @@
 from ucimlrepo import fetch_ucirepo
 from sklearn import preprocessing
 from sklearn.model_selection import train_test_split
+import numpy as np
 
 
 # Imports Heart Disease dataset from UCI repository, performs preprocessing and
@@ -18,6 +19,7 @@ def get_heart():
 
     X = X.to_numpy()
     y = y.to_numpy()
+    classes = np.unique(y)
 
     #Split data
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=123)
@@ -27,7 +29,7 @@ def get_heart():
     X_train_scaled = scaler.fit_transform(X_train)
     X_test_scaled = scaler.transform(X_test)
 
-    return X_train_scaled, X_test_scaled, y_train, y_test
+    return X_train_scaled, X_test_scaled, y_train, y_test, classes
 
 
 # Imports Breast Cancer dataset from UCI repository, performs preprocessing and
@@ -41,6 +43,7 @@ def get_breastCancer():
 
     X = X.to_numpy()
     y = y.to_numpy()
+    classes = np.unique(y)
 
     # Split data
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=123)
@@ -50,7 +53,7 @@ def get_breastCancer():
     X_train_scaled = scaler.fit_transform(X_train)
     X_test_scaled = scaler.transform(X_test)
 
-    return X_train_scaled, X_test_scaled, y_train, y_test
+    return X_train_scaled, X_test_scaled, y_train, y_test, classes
 
 
 # Imports Liver Disease dataset from UCI repository, performs preprocessing and
@@ -68,6 +71,7 @@ def get_liver():
     # Encode labels such that < 3 drinks = 0 and >= 3 drinks = 1
     y[y < 3] = 0
     y[y >= 3] = 1
+    classes = np.unique(y)
 
     # Split data
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=123)
@@ -77,7 +81,7 @@ def get_liver():
     X_train_scaled = scaler.fit_transform(X_train)
     X_test_scaled = scaler.transform(X_test)
 
-    return X_train_scaled, X_test_scaled, y_train, y_test
+    return X_train_scaled, X_test_scaled, y_train, y_test, classes
 
 
 # Imports Hepatitis dataset from UCI repository, performs preprocessing and
@@ -98,6 +102,7 @@ def get_hepatitis():
 
     X = X.to_numpy()
     y = y.to_numpy()
+    classes = np.unique(y)
 
     # Split data
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=123)
@@ -107,4 +112,4 @@ def get_hepatitis():
     X_train_scaled = scaler.fit_transform(X_train)
     X_test_scaled = scaler.transform(X_test)
 
-    return X_train_scaled, X_test_scaled, y_train, y_test
+    return X_train_scaled, X_test_scaled, y_train, y_test, classes
