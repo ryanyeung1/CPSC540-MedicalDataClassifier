@@ -12,6 +12,7 @@ def plot_confusion_matrix(y_true, y_preds, classes, model_names, dataset):
 
     # Create subplots for each model
     fig, axes = plt.subplots(1, 2, figsize=(15, 6))
+    fig.suptitle(f'Performance of models on {dataset}', fontsize=16)
 
     for i in range(2):
         # Generate confusion matrix
@@ -69,7 +70,7 @@ def visualize_metrics_bar_chart(metrics_values, models, dataset_types):
 
 def savefig(fname, fig=None, verbose=True):
     path = Path(".", fname)
-    (plt if fig is None else fig).savefig(path, bbox_inches="tight", pad_inches=0)
+    (plt if fig is None else fig).savefig(path, bbox_inches="tight", pad_inches=1)
     if verbose:
         print(f"Figure saved as '{path}'")
 
