@@ -49,7 +49,7 @@ def main():
     #Plot confusion matrix
     y_true_liver = y_true_liver_rf
     y_preds_liver = [y_pred_liver_svm, y_pred_liver_rf]
-    plot_confusion_matrix(y_true_liver, y_preds_liver, liver_classes, models, 'liver_disease')
+    plot_confusion_matrix(y_true_liver, y_preds_liver, liver_classes, models, 'liver_disorders')
 
     # Hepatitis
     X_train, X_test, y_train, y_test, hep_classes = get_hepatitis()
@@ -71,6 +71,7 @@ def main():
         calculate_metrics(y_true_hep_svm, y_pred_hep_svm),
         calculate_metrics(y_true_hep_rf, y_pred_hep_rf)
     ])
+
     # Reshape the metrics_values to have the shape (num_datasets, num_models, num_metrics)
     metrics_values = metrics_values.reshape((len(dataset_types), len(models), -1))
 

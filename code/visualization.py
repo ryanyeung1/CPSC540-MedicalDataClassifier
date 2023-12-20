@@ -16,7 +16,7 @@ def plot_confusion_matrix(y_true, y_preds, classes, model_names, dataset):
 
     for i in range(2):
         # Generate confusion matrix
-        cm = confusion_matrix(y_true, y_preds[i])
+        cm = confusion_matrix(y_true, y_preds[i], labels=classes)
 
         # Create a heatmap
         sns.heatmap(cm, annot=True, fmt="d", cmap="viridis", xticklabels=classes, yticklabels=classes, ax=axes[i])
@@ -29,12 +29,12 @@ def plot_confusion_matrix(y_true, y_preds, classes, model_names, dataset):
     plt.close(fig)
 
 
-def calculate_metrics(y_true, y_pred, average='weighted'):
+def calculate_metrics(y_true, y_pred, pos_label=1, average='binary'):
 
     accuracy = accuracy_score(y_true, y_pred)
-    precision = precision_score(y_true, y_pred, average=average)
-    recall = recall_score(y_true, y_pred, average=average)
-    f1 = f1_score(y_true, y_pred, average=average)
+    precision = precision_score(y_true, y_pred, pos_label=pos_label, average=average)
+    recall = recall_score(y_true, y_pred, pos_label=pos_label, average=average)
+    f1 = f1_score(y_true, y_pred, pos_label=pos_label, average=average)
     
     return accuracy, precision, recall, f1
 

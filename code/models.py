@@ -18,7 +18,7 @@ def SVM(X_train, X_test, y_train, y_test):
     new_y_test= pd.DataFrame(data= y_test)
 
     # train model
-    clf = svm.SVC(kernel='linear', C = 1)
+    clf = svm.SVC(kernel='rbf', C=1)
     clf.fit(X_train, new_y_train.values.ravel())
 
     # get y_predict and find accuracy
@@ -33,7 +33,7 @@ def RandomForests(X_train, X_test, y_train, y_test):
     new_y_test= pd.DataFrame(data= y_test)
 
     # train model
-    rf = RandomForestClassifier()
+    rf = RandomForestClassifier(random_state=123)
     rf.fit(X_train, new_y_train.values.ravel())
 
     # get y_predict and find accuracy
