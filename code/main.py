@@ -22,7 +22,7 @@ os.chdir(Path(__file__).parent.resolve())
 def main():
     
     models = ['SVM', 'Random Forest']
-    dataset_types = ['Heart Disease', 'Breast Cancer', 'Liver Disease', 'Hepatitis']
+    dataset_types = ['Heart Disease', 'Breast Cancer', 'Liver Disorder', 'Hepatitis']
 
     # Heart
     X_train, X_test, y_train, y_test, heart_classes = get_heart()
@@ -71,10 +71,9 @@ def main():
         calculate_metrics(y_true_hep_svm, y_pred_hep_svm),
         calculate_metrics(y_true_hep_rf, y_pred_hep_rf)
     ])
-
+    print(metrics_values)
     # Reshape the metrics_values to have the shape (num_datasets, num_models, num_metrics)
     metrics_values = metrics_values.reshape((len(dataset_types), len(models), -1))
-
     # Visualize metrics
     visualize_metrics_bar_chart(metrics_values, models, dataset_types)
 
